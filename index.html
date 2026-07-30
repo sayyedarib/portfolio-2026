@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sayyed Arib Hussain — Software Engineer</title>
+<meta name="description" content="Software engineer building and operating production web systems. Angular, Node.js, PostgreSQL. Open-source contributor to Zulip, Meshery, Ockam and Appwrite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0F1A;
+    --bg-2:#0E1626;
+    --surface:#121C30;
+    --surface-2:#16223A;
+    --arch:#1793D1;
+    --sky:#5CC8F5;
+    --steel:#7AA2F7;
+    --ink:#E7EEF9;
+    --muted:#8698B8;
+    --dim:#5D6E8C;
+    --rule:rgba(122,162,247,.16);
+    --ok:#7BD88F;
+
+    --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+    --wrap:920px;
+    --gap:clamp(3.5rem,7vw,6.5rem);
+    --dock:52px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:2rem}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:clamp(1rem,.97rem + .15vw,1.075rem);
+    line-height:1.62;
+    padding-bottom:calc(var(--dock) + 1rem);
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(64rem 38rem at 82% -6%, rgba(23,147,209,.16), transparent 62%),
+      radial-gradient(46rem 32rem at 2% 12%, rgba(122,162,247,.09), transparent 60%);
+  }
+  body.nuked #content{display:none}
+
+  a{color:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible{
+    outline:2px solid var(--sky);outline-offset:3px;border-radius:2px;
+  }
+
+  .wrap{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(3.5rem,9vw,6.5rem) 0 var(--gap)}
+  .hero__name{
+    font-family:var(--mono);font-weight:700;
+    font-size:clamp(1.9rem,1.1rem + 4.2vw,3.4rem);
+    line-height:1.03;letter-spacing:-.035em;margin:0 0 1.4rem;text-wrap:balance;
+  }
+  .hero__name span{color:var(--arch)}
+  .hero__thesis{
+    font-size:clamp(1.18rem,1.02rem + .8vw,1.55rem);
+    line-height:1.45;max-width:34ch;margin:0 0 1.2rem;text-wrap:pretty;
+  }
+  .hero__thesis em{font-style:normal;border-bottom:2px solid var(--arch)}
+  .hero__sub{color:var(--muted);max-width:58ch;margin:0 0 2rem}
+  .links{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:0}
+  .links a{
+    display:inline-block;font-family:var(--mono);font-size:.78rem;
+    padding:.48rem .8rem;border:1px solid var(--rule);border-radius:5px;
+    text-decoration:none;color:var(--steel);
+    transition:border-color .18s,color .18s,background .18s;
+  }
+  .links a:hover{color:#04121F;background:var(--sky);border-color:var(--sky)}
+
+  /* ---------- sections ---------- */
+  section{padding-bottom:var(--gap);scroll-margin-top:1.5rem}
+  .shead{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+    padding-bottom:.65rem;margin-bottom:1.9rem;border-bottom:1px solid var(--rule);
+  }
+  .shead h2{font-family:var(--mono);font-weight:700;font-size:clamp(1.15rem,1rem + .5vw,1.4rem);letter-spacing:-.02em;margin:0}
+  .shead .dir{font-family:var(--mono);font-size:.74rem;color:var(--dim);letter-spacing:.03em}
+
+  /* ---------- roles ---------- */
+  .role{margin-bottom:2.6rem}
+  .role:last-child{margin-bottom:0}
+  .role__top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:.15rem}
+  .role__title{font-size:1.075rem;font-weight:600;margin:0;letter-spacing:-.005em}
+  .role__title b{color:var(--sky);font-weight:600}
+  .role__title a{color:var(--sky);text-decoration:none;border-bottom:1px solid rgba(92,200,245,.4)}
+  .role__title a:hover{border-color:var(--sky)}
+  .role__when{font-family:var(--mono);font-size:.74rem;color:var(--muted);flex:none;letter-spacing:.02em}
+  .role__meta{color:var(--muted);font-size:.9rem;margin:0 0 1rem}
+  .role__scale{
+    font-family:var(--mono);font-size:.72rem;color:var(--steel);
+    border-left:2px solid var(--arch);padding:.15rem 0 .15rem .7rem;margin:0 0 1rem;line-height:1.75;
+  }
+  ul.pts{list-style:none;margin:0;padding:0}
+  ul.pts li{position:relative;padding-left:1.15rem;margin-bottom:.65rem}
+  ul.pts li::before{content:"";position:absolute;left:0;top:.72em;width:.42rem;height:1px;background:var(--arch)}
+  ul.pts li:last-child{margin-bottom:0}
+  strong{color:var(--ink);font-weight:600}
+
+  /* ---------- link chips ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.85rem 0 0;padding:0;list-style:none}
+  .chips a{
+    font-family:var(--mono);font-size:.7rem;text-decoration:none;
+    color:var(--steel);border:1px solid var(--rule);border-radius:4px;
+    padding:.26rem .55rem;transition:border-color .18s,color .18s;
+  }
+  .chips a:hover{color:var(--sky);border-color:var(--sky)}
+  .chips a::before{content:"↗ ";color:var(--dim)}
+
+  /* ---------- open source ---------- */
+  .os{display:grid;gap:1.35rem}
+  .os__item{
+    border:1px solid var(--rule);border-radius:7px;padding:1.1rem 1.2rem;
+    background:linear-gradient(180deg,var(--surface),rgba(14,22,38,.35));
+  }
+  .os__name{font-family:var(--mono);font-size:.92rem;font-weight:500;margin:0 0 .45rem;color:var(--sky)}
+  .os__item p{margin:0;font-size:.95rem}
+  .os__item p+p{margin-top:.5rem;color:var(--muted);font-size:.88rem}
+  .orgs{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 0;padding:0;list-style:none}
+  .orgs li{font-family:var(--mono);font-size:.7rem;color:var(--muted);border:1px solid var(--rule);padding:.2rem .5rem;border-radius:3px}
+
+  /* ---------- projects ---------- */
+  .proj{border-top:1px solid var(--rule);padding:1.35rem 0}
+  .proj:first-of-type{border-top:none;padding-top:0}
+  .proj__top{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap}
+  .proj__name{font-size:1.05rem;font-weight:600;margin:0 0 .1rem}
+  .proj__stack{font-family:var(--mono);font-size:.72rem;color:var(--muted);flex:none}
+  .proj__note{font-family:var(--mono);font-size:.7rem;color:var(--ok);letter-spacing:.03em}
+  .proj p{margin:.5rem 0 0}
+
+  /* ---------- skills ---------- */
+  .srow{display:grid;grid-template-columns:9.5rem 1fr;gap:1.25rem;padding:.8rem 0;border-top:1px solid var(--rule)}
+  .srow:first-child{border-top:none}
+  .srow dt{font-family:var(--mono);font-size:.74rem;color:var(--arch);letter-spacing:.03em;padding-top:.18rem}
+  .srow dd{margin:0;font-size:.95rem}
+  .srow .soft{color:var(--muted)}
+
+  /* ---------- education ---------- */
+  .edu{display:grid;gap:1.05rem}
+  .edu__row{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap}
+  .edu__row h3{margin:0;font-size:1rem;font-weight:600}
+  .edu__row p{margin:.15rem 0 0;color:var(--muted);font-size:.9rem}
+  .certs{margin:0;padding:0;list-style:none;font-size:.92rem;color:var(--muted)}
+  .certs li{padding:.2rem 0}
+
+  /* ---------- contact ---------- */
+  .contact p{font-size:clamp(1.05rem,1rem + .4vw,1.22rem);max-width:46ch}
+  .mail{
+    display:inline-block;margin-top:.85rem;font-family:var(--mono);
+    font-size:clamp(.85rem,.8rem + .4vw,1.02rem);color:var(--sky);text-decoration:none;
+    border-bottom:1px solid rgba(92,200,245,.45);padding-bottom:.15rem;word-break:break-all;
+  }
+  .mail:hover{color:var(--ink);border-color:var(--ink)}
+
+  footer{
+    border-top:1px solid var(--rule);padding:1.4rem 0 2.2rem;
+    font-family:var(--mono);font-size:.7rem;color:var(--dim);
+    display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  }
+  footer kbd{
+    font-family:var(--mono);border:1px solid var(--rule);border-radius:3px;
+    padding:.05rem .3rem;color:var(--muted);
+  }
+
+  /* ================= TERMINAL DOCK ================= */
+  .term{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    background:rgba(10,15,26,.93);
+    backdrop-filter:blur(12px);
+    border-top:1px solid var(--rule);
+    font-family:var(--mono);
+  }
+  .term__out{
+    max-width:var(--wrap);margin:0 auto;
+    padding:0 clamp(1.25rem,5vw,2.5rem);
+    max-height:0;overflow-y:auto;
+    font-size:.76rem;line-height:1.75;
+    transition:max-height .22s ease,padding .22s ease;
+  }
+  .term.open .term__out{max-height:min(46vh,26rem);padding-top:.85rem;padding-bottom:.5rem}
+  .term__line{white-space:pre-wrap;word-break:break-word;color:var(--muted)}
+  .term__line .p{color:var(--ok)}
+  .term__line .u{color:var(--sky)}
+  .term__line .d{color:var(--steel)}
+  .term__line .e{color:#F2777A}
+  .term__line .h{color:var(--ink)}
+  .term__line a{color:var(--sky)}
+
+  .term__bar{
+    max-width:var(--wrap);margin:0 auto;
+    padding:0 clamp(1.25rem,5vw,2.5rem);
+    height:var(--dock);display:flex;align-items:center;gap:.5rem;
+  }
+  .term__ps1{color:var(--ok);font-size:.78rem;flex:none;white-space:nowrap}
+  .term__ps1 .path{color:var(--sky)}
+  .term__in{
+    flex:1;min-width:0;background:transparent;border:0;outline:0;
+    color:var(--ink);font-family:var(--mono);font-size:.78rem;
+    padding:.35rem 0;caret-color:var(--sky);
+  }
+  .term__hint{font-size:.66rem;color:var(--dim);flex:none;white-space:nowrap}
+  @media (max-width:620px){
+    .term__hint{display:none}
+    .term__ps1{font-size:.72rem}
+    .term__in{font-size:.75rem}
+  }
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+  @media (max-width:560px){.srow{grid-template-columns:1fr;gap:.3rem}}
+</style>
+</head>
+<body>
+
+<div id="content">
+<div class="wrap">
+
+  <header class="hero" id="home" data-path="~">
+    <h1 class="hero__name">Sayyed Arib<br>Hussain<span>_</span></h1>
+    <p class="hero__thesis">Software engineer. I'd rather <em>read the config</em> than guess at it.</p>
+    <p class="hero__sub">A year and a half building and operating a CRM that 100,000+ people use every day — Angular, Node.js, PostgreSQL. I contribute upstream to open source, automate the parts of my job that repeat, and care more about why something broke than about closing the ticket.</p>
+    <ul class="links">
+      <li><a href="mailto:sayyedaribhussain4321@gmail.com">Email</a></li>
+      <li><a href="https://github.com/sayyedarib" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/aarib/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://leetcode.com/u/Aarib" target="_blank" rel="noopener">LeetCode</a></li>
+    </ul>
+  </header>
+
+  <section id="experience" data-path="~/experience" class="rv">
+    <div class="shead"><h2>Experience</h2><span class="dir">~/experience</span></div>
+
+    <article class="role">
+      <div class="role__top">
+        <h3 class="role__title">Software Engineer, <a href="https://telecrm.in" target="_blank" rel="noopener">telecrm</a></h3>
+        <span class="role__when">Jan 2025 — Present</span>
+      </div>
+      <p class="role__meta">Full-stack CRM platform · Gurugram, India (onsite)</p>
+      <p class="role__scale">7,000+ clients · 100,000+ users · 745M+ API requests a day</p>
+      <ul class="pts">
+        <li>Rebuilt <strong>role-based access control across 5 modules</strong> — dashboards, message templates, saved filters, embedded apps, and confidential fields — so permissions decide what every role can see and edit. Shipped two-factor authentication alongside it.</li>
+        <li>Wrote <strong>300+ automated regression tests</strong> (Puppeteer, Jest) that run in CI on Ubuntu runners and gate every release, including a reusable helper for driving elements outside the viewport that the team still uses.</li>
+        <li>Built a <strong>Model Context Protocol integration with 6 read/write tools</strong>, letting LLM applications drive internal CRM workflows.</li>
+        <li>Sat with stakeholders to work out what they actually needed, then delivered <strong>200+ analytics dashboards for 40+ clients</strong>. One funnel view showed a marketing team where users dropped off and helped lift campaign reply rates <strong>20%</strong>.</li>
+        <li>Own the <strong>ETL pipeline</strong> that moves data from MongoDB into Amazon RDS for analytics — scripts scheduled with systemd timers, feeding a self-hosted Metabase instance on Docker.</li>
+        <li>Take first-line support duty every fourth sprint: triaged <strong>50+ tickets</strong>, fixed what I could, routed the rest, and coordinated with product.</li>
+        <li>Own production incidents end to end — reproduce, trace the root cause across the stack, ship the fix.</li>
+      </ul>
+    </article>
+
+    <article class="role">
+      <div class="role__top">
+        <h3 class="role__title">Full-Stack Developer Intern, <a href="https://voxxi.ai" target="_blank" rel="noopener">VoxxiLab Inc.</a></h3>
+        <span class="role__when">Apr — Jul 2024</span>
+      </div>
+      <p class="role__meta">AI voice-monitoring product · Remote</p>
+      <ul class="pts">
+        <li>Built backend APIs in Python, FastAPI, and PostgreSQL behind lead-management and voice-monitoring dashboards (React, Supabase).</li>
+        <li>Tuned LLM workflows for sentiment analysis and call-quality review, cutting pipeline latency by <strong>~200 ms</strong>.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="open-source" data-path="~/open-source" class="rv">
+    <div class="shead"><h2>Open source</h2><span class="dir">~/open-source</span></div>
+    <div class="os">
+      <div class="os__item">
+        <p class="os__name">zulip / zulip</p>
+        <p><strong>5 pull requests merged</strong> into the production codebase. The one I'm proudest of is a bot-enforced access-control feature that stops people claiming a pull request they aren't assigned to. I also added silent mentions to cut notification noise and improved file-upload UX with a drag-and-drop effect.</p>
+        <ul class="chips">
+          <li><a href="https://github.com/zulip/zulip/pulls?q=is%3Apr+author%3Asayyedarib" target="_blank" rel="noopener">my PRs in zulip/zulip</a></li>
+          <li><a href="https://github.com/zulip/zulipbot/pull/231" target="_blank" rel="noopener">zulipbot #231 — CI/CD</a></li>
+        </ul>
+      </div>
+      <div class="os__item">
+        <p class="os__name">hacktoberfest</p>
+        <p>I started contributing while preparing for Google Summer of Code and kept going. Contributions across <strong>8+ organizations</strong>, working through code review in large codebases I'd never seen before — including one merged bug fix to a Rust project. A small one, but my first.</p>
+        <ul class="orgs"><li>Layer5 / Meshery</li><li>Ockam</li><li>Appwrite</li><li>Monday.com</li><li>AMUpedia</li></ul>
+      </div>
+      <div class="os__item">
+        <p class="os__name">why I stayed</p>
+        <p>I came for the programs and stayed for the people. In Zulip and Meshery, founders and senior engineers took time to point out my careless mistakes politely — that's what pushed me to get better. I still read through projects I'm not contributing to, just to see how others handle scale and maintenance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" data-path="~/projects" class="rv">
+    <div class="shead"><h2>Projects</h2><span class="dir">~/projects</span></div>
+
+    <article class="proj">
+      <div class="proj__top">
+        <div>
+          <h3 class="proj__name">Khan Group of Hostels &amp; PG</h3>
+          <span class="proj__note">still in production</span>
+        </div>
+        <span class="proj__stack">Next.js · Supabase · Drizzle</span>
+      </div>
+      <p>A booking platform for a hostel owner I met while staying there during college — my first large solo build. <strong>150+ bookings and about INR 75,000 in its first two weeks.</strong> The lesson I actually took away was about requirements: scope kept moving with the client's mood until I stopped and froze it, sketched the UI on paper, then designed the database.</p>
+      <p>The hard part was double-booking. Two people could hold the same room while a payment sat unverified, so I used a database transaction to make sure only one booking can ever lock a room, even under concurrent requests.</p>
+      <ul class="chips">
+        <li><a href="https://www.aligarhhostel.com/" target="_blank" rel="noopener">aligarhhostel.com</a></li>
+        <li><a href="https://github.com/sayyedarib/hostel-booking-frontend" target="_blank" rel="noopener">repo</a></li>
+      </ul>
+    </article>
+
+    <article class="proj">
+      <div class="proj__top">
+        <div>
+          <h3 class="proj__name">Grabtern</h3>
+          <span class="proj__note">early core contributor, not the creator</span>
+        </div>
+        <span class="proj__stack">Next.js · MongoDB · Node.js</span>
+      </div>
+      <p>A senior of mine started this mentor–mentee platform and I joined a few weeks in, during my fifth semester. I built the mentor registration page and Google login, then took over more of the core engineering — starting with the Razorpay payment gateway — as he moved to the business side. We onboarded <strong>50+ mentors and 20+ mentees</strong>, and the community page still has <strong>6,300+ followers on LinkedIn</strong>.</p>
+      <p>It was picked for GirlScript Summer of Code, which brought in a wave of first-time contributors. I spent much of that time reviewing their PRs and walking them through small mistakes — the same patience Zulip's maintainers had shown me. The project is shut down now; Topmate took that market.</p>
+      <ul class="chips">
+        <li><a href="https://github.com/anmode/grabtern-frontend" target="_blank" rel="noopener">repo</a></li>
+        <li><a href="https://www.linkedin.com/company/grabtern/" target="_blank" rel="noopener">LinkedIn page</a></li>
+      </ul>
+    </article>
+
+    <article class="proj">
+      <div class="proj__top">
+        <div><h3 class="proj__name">Botcraft</h3></div>
+        <span class="proj__stack">Next.js 15 · React 19 · FastAPI · LangChain</span>
+      </div>
+      <p>A no-code platform for building AI assistants: upload a knowledge base, tune the retrieval pipeline, test it live, then paste one <code>&lt;script&gt;</code> tag into your site. I designed the LLM orchestration layer and the backend, and built the dashboard around it — <strong>22 routes</strong> covering auth, onboarding, a multi-source knowledge base, analytics, a WebSocket playground, and a theming studio.</p>
+      <p>The part I'd defend in a review is the state boundary. Server state lives in TanStack Query with explicit invalidation; client-only state lives in a persisted Zustand store. Neither leaks into the other, so no component ever calls Axios directly — one hook per resource owns its query keys.</p>
+      <p>The whole RAG pipeline is configurable from the UI at runtime: chunk size, overlap, splitter, PDF parser, embedding model, LoRA/QLoRA parameters, temperature, and the system prompt — every field validated with Zod, which also infers the TypeScript types. Auth rides on an HTTP-only cookie, so the token is never readable from JavaScript. CI runs lint, <code>tsc --noEmit</code>, Vitest, and a production build on every push; the tests guard the things that actually bite, like an <code>https://</code> page deriving <code>wss://</code> instead of a mixed-content <code>ws://</code>.</p>
+      <ul class="chips">
+        <li><a href="https://github.com/sayyedarib/botcraft-frontend" target="_blank" rel="noopener">repo</a></li>
+      </ul>
+    </article>
+
+    <article class="proj">
+      <div class="proj__top">
+        <div><h3 class="proj__name">Project Alpha</h3><span class="proj__note">Vercera Hackathon 2024, AMU</span></div>
+        <span class="proj__stack">Python · TensorFlow · MoveNet · Next.js</span>
+      </div>
+      <p>A way to play computer games with your body instead of a keyboard. MoveNet reads your pose from the webcam and maps it to game input — raise your left hand, the character turns left — so time at the machine costs you some movement instead of none. Pose detection in TensorFlow and OpenCV, input synthesis with PyAutoGUI, Next.js front end.</p>
+      <ul class="chips">
+        <li><a href="https://github.com/sayyedarib/Alpha" target="_blank" rel="noopener">repo</a></li>
+        <li><a href="https://www.youtube.com/watch?v=sAkHgdr54wc" target="_blank" rel="noopener">demo video</a></li>
+        <li><a href="https://www.canva.com/design/DAF-cU2M2Uk/WUMvyRB8bnXdZIQ9srC18A/view" target="_blank" rel="noopener">presentation</a></li>
+      </ul>
+    </article>
+
+    <article class="proj">
+      <div class="proj__top">
+        <div><h3 class="proj__name">Home automation by speech recognition</h3></div>
+        <span class="proj__stack">Python · Machine Learning · Arduino</span>
+      </div>
+      <p>An end-to-end pipeline rather than a demo: collected and labelled a <strong>1,000-sample voice dataset</strong>, trained and evaluated a speech-command classifier, then deployed it to an Arduino for real-time inference — switching lights on a spoken command.</p>
+      <ul class="chips">
+        <li><a href="https://github.com/sayyedarib/minor_project" target="_blank" rel="noopener">repo</a></li>
+      </ul>
+    </article>
+
+  </section>
+
+  <section id="skills" data-path="~/skills" class="rv">
+    <div class="shead"><h2>Skills</h2><span class="dir">~/skills</span></div>
+    <dl class="skills">
+      <div class="srow"><dt>languages</dt><dd>JavaScript, TypeScript, SQL, C++, Java <span class="soft">· Python (FastAPI, pandas — rusty but real) · Go, Rust (exposure)</span></dd></div>
+      <div class="srow"><dt>frontend</dt><dd>Angular, React, Next.js, HTML, CSS, reusable components</dd></div>
+      <div class="srow"><dt>backend</dt><dd>Node.js, FastAPI, REST APIs, PostgreSQL, MongoDB, Redis</dd></div>
+      <div class="srow"><dt>linux &amp; infra</dt><dd>Ubuntu, Bash, systemd services and timers, networking / DNS, file permissions, Docker, AWS (RDS)</dd></div>
+      <div class="srow"><dt>testing</dt><dd>Puppeteer, Jest, regression automation, root-cause debugging, incident triage</dd></div>
+      <div class="srow"><dt>data &amp; ai</dt><dd>ETL pipelines, Metabase, query optimization, LangChain, Model Context Protocol, RAG, NumPy, pandas</dd></div>
+      <div class="srow"><dt>practices</dt><dd>Git / GitHub, GitHub Actions, code review, requirements gathering, on-call rotations, documentation</dd></div>
+    </dl>
+  </section>
+
+  <section id="education" data-path="~/education" class="rv">
+    <div class="shead"><h2>Education</h2><span class="dir">~/education</span></div>
+    <div class="edu">
+      <div class="edu__row">
+        <div><h3>B.Tech, Artificial Intelligence — Aligarh Muslim University</h3><p>CGPA 8.4 / 10</p></div>
+        <span class="role__when">Dec 2021 — Jun 2025</span>
+      </div>
+      <div class="edu__row">
+        <div><h3>Class XII, CBSE — Aims International, Gonda, UP</h3><p>94.2%</p></div>
+      </div>
+      <ul class="certs">
+        <li>Crash Course on Python — Google / Coursera</li>
+        <li>Supervised Machine Learning: Regression and Classification — Stanford / DeepLearning.AI</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="contact rv" data-path="~/contact">
+    <div class="shead"><h2>Get in touch</h2><span class="dir">~/contact</span></div>
+    <p>Open to backend, full-stack, and platform roles. If you've read this far, the fastest way to reach me is email.</p>
+    <a class="mail" href="mailto:sayyedaribhussain4321@gmail.com">sayyedaribhussain4321@gmail.com</a>
+  </section>
+
+  <footer>
+    <span>Sayyed Arib Hussain · Gurugram, India</span>
+    <span>Try the shell below — <kbd>help</kbd> to start</span>
+  </footer>
+</div>
+</div><!-- /#content -->
+
+<div class="term" id="term">
+  <div class="term__out" id="out" aria-live="polite"></div>
+  <div class="term__bar">
+    <span class="term__ps1">arib@ubuntu:<span class="path" id="ps1">~</span>$</span>
+    <input class="term__in" id="in" type="text" autocomplete="off" autocapitalize="off"
+           spellcheck="false" aria-label="terminal input" placeholder="type help">
+    <span class="term__hint">↑ history · tab completes</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var out=document.getElementById('out'),
+      inp=document.getElementById('in'),
+      ps1=document.getElementById('ps1'),
+      term=document.getElementById('term'),
+      body=document.body;
+
+  var DIRS={
+    'experience':'experience','open-source':'open-source','projects':'projects',
+    'skills':'skills','education':'education','contact':'contact'
+  };
+  var FILES={
+    'about.txt':["Sayyed Arib Hussain — software engineer, Gurugram.",
+      "1.5 years at telecrm building and operating a CRM used by 100,000+ people.",
+      "Ubuntu daily driver. Upstream contributor to Zulip, Meshery, Ockam, Appwrite.",
+      "Currently open to backend, full-stack and platform roles."],
+    'contact.txt':["email    sayyedaribhussain4321@gmail.com",
+      "github   github.com/sayyedarib","linkedin linkedin.com/in/aarib",
+      "leetcode leetcode.com/u/Aarib","site     aarib.me"],
+    'stack.txt':["daily     TypeScript · Node.js · Angular · PostgreSQL",
+      "also      React · Next.js · FastAPI · MongoDB · Redis",
+      "infra     Ubuntu · systemd · Docker · AWS RDS · GitHub Actions",
+      "testing   Puppeteer · Jest","rusty     Python (real, but not in a year)",
+      "exposure  Go · Rust (one merged fix)"],
+    'resume.pdf':null
+  };
+
+  var cwd='~', hist=[], hidx=-1;
+
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function print(html,cls){
+    var d=document.createElement('div');
+    d.className='term__line'+(cls?' '+cls:'');
+    d.innerHTML=html;
+    out.appendChild(d);
+    term.classList.add('open');
+    out.scrollTop=out.scrollHeight;
+  }
+  function echo(cmd){
+    print('<span class="p">arib@ubuntu:</span><span class="u">'+esc(cwd)+'</span><span class="p">$</span> '+esc(cmd));
+  }
+  function setCwd(p){cwd=p;ps1.textContent=p;}
+
+  function goto(id){
+    var el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
+  }
+
+  var CMD={
+    help:function(){
+      print('<span class="h">available commands</span>');
+      print('  <span class="d">ls</span>                 list sections');
+      print('  <span class="d">cd &lt;section&gt;</span>       jump to a section (try: cd experience)');
+      print('  <span class="d">cat &lt;file&gt;</span>         read a file (ls to see them)');
+      print('  <span class="d">open &lt;target&gt;</span>      github · linkedin · leetcode · email · zulip');
+      print('  <span class="d">whoami</span>             the short version');
+      print('  <span class="d">uptime</span>             how long I have been at this');
+      print('  <span class="d">neofetch</span>           the obligatory');
+      print('  <span class="d">pwd</span> · <span class="d">clear</span> · <span class="d">rm -rf /</span>  behave exactly as you would expect');
+    },
+    ls:function(){
+      var d=Object.keys(DIRS).map(function(k){return '<span class="d">'+k+'/</span>';}).join('  ');
+      var f=Object.keys(FILES).map(function(k){return '<span class="u">'+k+'</span>';}).join('  ');
+      print(d);print(f);
+    },
+    cd:function(a){
+      var t=(a[0]||'').replace(/\/+$/,'').replace(/^~\//,'').replace(/^\.\//,'');
+      if(!t||t==='~'||t==='/'||t==='..'){setCwd('~');goto('home');print('→ home');return;}
+      if(DIRS[t]){setCwd('~/'+DIRS[t]);goto(t);print('→ '+t);return;}
+      print('cd: no such directory: '+esc(t)+'  <span class="d">(try ls)</span>','e');
+    },
+    cat:function(a){
+      var f=a[0];
+      if(!f){print('cat: missing operand','e');return;}
+      if(f==='resume.pdf'){print('cat: resume.pdf: binary file — <a href="#" target="_blank">download it instead</a>');return;}
+      if(FILES[f]){FILES[f].forEach(function(l){print(esc(l));});return;}
+      if(DIRS[f.replace(/\/+$/,'')]){print('cat: '+esc(f)+': is a directory  <span class="d">(cd '+esc(f)+')</span>','e');return;}
+      print('cat: '+esc(f)+': no such file','e');
+    },
+    open:function(a){
+      var m={github:'https://github.com/sayyedarib',linkedin:'https://www.linkedin.com/in/aarib/',
+        leetcode:'https://leetcode.com/u/Aarib',email:'mailto:sayyedaribhussain4321@gmail.com',
+        zulip:'https://github.com/zulip/zulip/pulls?q=is%3Apr+author%3Asayyedarib'};
+      var t=a[0];
+      if(m[t]){window.open(m[t],'_blank','noopener');print('opening '+t+' …');}
+      else{print('open: unknown target. try: '+Object.keys(m).join(', '),'e');}
+    },
+    whoami:function(){
+      print('arib — software engineer. builds it, runs it, fixes it at 2am.');
+    },
+    pwd:function(){print('/home/arib'+(cwd==='~'?'':cwd.slice(1)));},
+    uptime:function(){
+      print(' 1.5 years');
+    },
+    date:function(){print(new Date().toString());},
+    neofetch:function(){
+      print('<span class="u">   /\\        </span><span class="h">arib</span>@<span class="h">ubuntu</span>');
+      print('<span class="u">  /  \\       </span>-----------');
+      print('<span class="u"> /\\   \\      </span><span class="d">role</span>     Software Engineer @ telecrm');
+      print('<span class="u">/  __  \\     </span><span class="d">uptime</span>   1.5 years');
+      print('<span class="u">/  (  )  \\   </span><span class="d">shell</span>    bash · zsh when feeling fancy');
+      print('<span class="u">/__|  |__\\   </span><span class="d">editor</span>   whatever has the file open');
+      print('<span class="u">             </span><span class="d">upstream</span> zulip · meshery · ockam · appwrite');
+    },
+    clear:function(){out.innerHTML='';term.classList.remove('open');},
+    sudo:function(){print('arib is not in the sudoers file. This incident will be reported.','e');},
+    exit:function(){print('there is no exit. only scrolling.');},
+    rm:function(a){
+      var s=a.join(' ');
+      if(/-[rf]*r[rf]*f|-[rf]*f[rf]*r|\*|\/$|^\/$/.test(s)||s.indexOf('/')===0||s.indexOf('*')>-1){
+        body.classList.add('nuked');
+        print('removed everything.','e');
+        print('you actually did it. type <span class="d">undo</span> to put it back.');
+      }else{
+        print('rm: '+esc(a[0]||'')+': permission denied  <span class="d">(nice try)</span>','e');
+      }
+    },
+    undo:function(){
+      if(body.classList.contains('nuked')){body.classList.remove('nuked');print('restored from backup. always keep backups.');}
+      else{print('nothing to undo.');}
+    }
+  };
+  CMD['restore']=CMD.undo;
+  CMD['man']=CMD.help;
+
+  function run(raw){
+    var line=raw.trim();
+    if(!line)return;
+    echo(line);
+    hist.push(line);hidx=hist.length;
+    var parts=line.split(/\s+/),c=parts[0].toLowerCase(),args=parts.slice(1);
+    if(CMD[c]){CMD[c](args);}
+    else{print(esc(c)+': command not found  <span class="d">(try help)</span>','e');}
+  }
+
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){run(inp.value);inp.value='';}
+    else if(e.key==='ArrowUp'){
+      if(hidx>0){hidx--;inp.value=hist[hidx];e.preventDefault();}
+    }
+    else if(e.key==='ArrowDown'){
+      if(hidx<hist.length-1){hidx++;inp.value=hist[hidx];}
+      else{hidx=hist.length;inp.value='';}
+      e.preventDefault();
+    }
+    else if(e.key==='Tab'){
+      e.preventDefault();
+      var v=inp.value,m=v.match(/^(cd|cat)\s+(\S*)$/i);
+      if(m){
+        var pool=m[1].toLowerCase()==='cd'?Object.keys(DIRS):Object.keys(FILES);
+        var hit=pool.filter(function(k){return k.indexOf(m[2])===0;});
+        if(hit.length===1){inp.value=m[1]+' '+hit[0];}
+        else if(hit.length>1){print(hit.join('  '));}
+      }else{
+        var hit2=Object.keys(CMD).filter(function(k){return k.indexOf(v.toLowerCase())===0;});
+        if(hit2.length===1)inp.value=hit2[0];
+        else if(hit2.length>1)print(hit2.join('  '));
+      }
+    }
+  });
+
+  // click anywhere on the dock focuses input
+  term.addEventListener('click',function(e){if(e.target.tagName!=='A')inp.focus();});
+
+  // scroll-spy keeps the prompt honest
+  var secs=[].slice.call(document.querySelectorAll('[data-path]'));
+  var lastPath='~';
+  window.addEventListener('scroll',function(){
+    if(body.classList.contains('nuked'))return;
+    var mark=window.scrollY+window.innerHeight*0.35,found='~';
+    for(var i=0;i<secs.length;i++){if(secs[i].offsetTop<=mark){found=secs[i].getAttribute('data-path');}}
+    if(found!==lastPath){lastPath=found;setCwd(found);}
+  },{passive:true});
+
+  // reveal on scroll
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -12% 0px',threshold:.06});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>
