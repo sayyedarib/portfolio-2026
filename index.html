@@ -238,7 +238,7 @@
   <header class="hero" id="home" data-path="~">
     <h1 class="hero__name">Sayyed Arib<br>Hussain<span>_</span></h1>
     <p class="hero__thesis">Software engineer. I'd rather <em>read the config</em> than guess at it.</p>
-    <p class="hero__sub">A year and a half building and operating a CRM that 100,000+ people use every day — Angular, Node.js, PostgreSQL. I contribute upstream to open source, automate the parts of my job that repeat, and care more about why something broke than about closing the ticket.</p>
+    <p class="hero__sub">A year and a half building and operating a CRM that 20,000+ people use every day — Angular, Node.js, PostgreSQL. I contribute upstream to open source, automate the parts of my job that repeat, and care more about why something broke than about closing the ticket.</p>
     <ul class="links">
       <li><a href="mailto:sayyedaribhussain4321@gmail.com">Email</a></li>
       <li><a href="https://github.com/sayyedarib" target="_blank" rel="noopener">GitHub</a></li>
@@ -256,7 +256,7 @@
         <span class="role__when">Jan 2025 — Present</span>
       </div>
       <p class="role__meta">Full-stack CRM platform · Gurugram, India (onsite)</p>
-      <p class="role__scale">7,000+ clients · 100,000+ users · 745M+ API requests a day</p>
+      <p class="role__scale">2,300+ clients · 20,000+ users · 745M+ API requests a month</p>
       <ul class="pts">
         <li>Rebuilt <strong>role-based access control across 5 modules</strong> — dashboards, message templates, saved filters, embedded apps, and confidential fields — so permissions decide what every role can see and edit. Shipped two-factor authentication alongside it.</li>
         <li>Wrote <strong>300+ automated regression tests</strong> (Puppeteer, Jest) that run in CI on Ubuntu runners and gate every release, including a reusable helper for driving elements outside the viewport that the team still uses.</li>
@@ -346,7 +346,7 @@
       </div>
       <p>A no-code platform for building AI assistants: upload a knowledge base, tune the retrieval pipeline, test it live, then paste one <code>&lt;script&gt;</code> tag into your site. I designed the LLM orchestration layer and the backend, and built the dashboard around it — <strong>22 routes</strong> covering auth, onboarding, a multi-source knowledge base, analytics, a WebSocket playground, and a theming studio.</p>
       <p>The part I'd defend in a review is the state boundary. Server state lives in TanStack Query with explicit invalidation; client-only state lives in a persisted Zustand store. Neither leaks into the other, so no component ever calls Axios directly — one hook per resource owns its query keys.</p>
-      <p>The whole RAG pipeline is configurable from the UI at runtime: chunk size, overlap, splitter, PDF parser, embedding model, LoRA/QLoRA parameters, temperature, and the system prompt — every field validated with Zod, which also infers the TypeScript types. Auth rides on an HTTP-only cookie, so the token is never readable from JavaScript. CI runs lint, <code>tsc --noEmit</code>, Vitest, and a production build on every push; the tests guard the things that actually bite, like an <code>https://</code> page deriving <code>wss://</code> instead of a mixed-content <code>ws://</code>.</p>
+      <p>The whole RAG pipeline is configurable from the UI at runtime: chunk size, overlap, splitter, PDF parser, embedding model, LoRA/QLoRA parameters, temperature, and the system prompt.</p>
       <ul class="chips">
         <li><a href="https://github.com/sayyedarib/botcraft-frontend" target="_blank" rel="noopener">repo</a></li>
       </ul>
@@ -445,7 +445,7 @@
   };
   var FILES={
     'about.txt':["Sayyed Arib Hussain — software engineer, Gurugram.",
-      "1.5 years at telecrm building and operating a CRM used by 100,000+ people.",
+      "1.5 years at telecrm building and operating a CRM used by 20,000+ people.",
       "Ubuntu daily driver. Upstream contributor to Zulip, Meshery, Ockam, Appwrite.",
       "Currently open to backend, full-stack and platform roles."],
     'contact.txt':["email    sayyedaribhussain4321@gmail.com",
