@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sayyed Arib Hussain — Software Engineer</title>
-<meta name="description" content="Software engineer building and operating production web systems. Angular, Node.js, PostgreSQL. Open-source contributor to Zulip, Meshery, Ockam and Appwrite.">
+<meta name="description" content="Software engineer building and operating production web systems. Angular, Node.js, PostgreSQL. Open-source contributor to Zulip, Meshery and Ockam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -188,6 +188,7 @@
   .srow dt{font-family:var(--mono);font-size:var(--fs-xs);color:var(--muted);letter-spacing:.03em;padding-top:.28rem}
   .srow dd{margin:0;font-size:var(--fs-base)}
   .srow .soft{color:var(--dim)}
+  .ws__intro{margin:0 0 1rem;font-size:var(--fs-base);color:var(--muted);max-width:var(--measure)}
 
   /* ---------- education ---------- */
   .edu{display:grid;gap:1.05rem}
@@ -291,14 +292,19 @@
         <h3 class="role__title">Software Engineer, <a href="https://telecrm.in" target="_blank" rel="noopener">telecrm</a></h3>
         <span class="role__when">Jan 2025 — Present</span>
       </div>
-      <p class="role__meta">Full-stack CRM platform · Gurugram, India (onsite)</p>
+      <p class="role__meta">Full-stack CRM platform · Gurugram, India (onsite) · intern Jan–May 2025, full-time since Jun 2025</p>
       <p class="role__scale"><b>2,300+</b> clients · <b>20,000+</b> users · <b>745M+</b> API requests a month</p>
       <ul class="pts">
-        <li>Rebuilt <strong>role-based access control across 5 modules</strong> — dashboards, message templates, saved filters, embedded apps, and confidential fields — so permissions decide what every role can see and edit. Shipped two-factor authentication alongside it.</li>
-        <li>Wrote <strong>300+ automated regression tests</strong> (Puppeteer, Jest) that run in CI on Ubuntu runners and gate every release, including a reusable helper for driving elements outside the viewport that the team still uses.</li>
-        <li>Built a <strong>Model Context Protocol integration with 6 read/write tools</strong>, letting LLM applications drive internal CRM workflows.</li>
+        <li>Cut mobile app startup on low-end devices from <strong>23 to 12 seconds</strong> by shrinking the initial bundle from 23 MB to 10 MB — lazy-loading modules and dropping dependencies the app never needed on mobile.</li>
+        <li>Redesigned <strong>role-based access control across 5 modules</strong> — dashboards, message templates, saved filters, embedded apps, and confidential fields. Every user used to build their own copy of each; now they're assigned to a role or permission template and everyone in that role gets them. Shipped two-factor authentication and mobile screenshot prevention alongside it.</li>
+        <li>Built a <strong>Model Context Protocol server with 6 read/write tools</strong>, letting LLM applications drive internal CRM workflows.</li>
+        <li>Wrote <strong>300+ automated regression tests</strong> (Puppeteer, Jest) that run in CI and gate every release, including a reusable helper for driving elements outside the viewport that the suite couldn't reach before.</li>
+        <li>Raised the bulk-update limit for unique lead fields from <strong>10,000 to 50,000 leads</strong> by splitting the job into a master that hands batches to worker jobs.</li>
+        <li>Added saveable filters to the lead activity history, so people can show only the actions they care about — say, calls and notes — without rebuilding the filter every visit.</li>
         <li>Sat with stakeholders to work out what they actually needed, then delivered <strong>200+ analytics dashboards for 40+ clients</strong>. One funnel view showed a marketing team where users dropped off and helped lift campaign reply rates <strong>20%</strong>.</li>
-        <li>Own the <strong>ETL pipeline</strong> that moves data from MongoDB into Amazon RDS for analytics — scripts scheduled with systemd timers, feeding a self-hosted Metabase instance on Docker.</li>
+        <li>Run the <strong>ETL pipeline</strong> that moves data from MongoDB into Amazon RDS for analytics — scripts scheduled with systemd timers, feeding a self-hosted Metabase instance on Docker — and cut development RDS spend from <strong>$500 to $200 a month</strong> by right-sizing instances that never passed 20% CPU.</li>
+        <li>Moved the mobile app from Capacitor 7 to 8, and shortened releases from a <strong>3-day store review to minutes</strong> with over-the-air updates.</li>
+        <li>Added <strong>Firebase Crashlytics</strong> so crashes, ANRs, and other errors are logged and traceable, and started the mobile app's engineering documentation after joining an undocumented codebase.</li>
         <li>Take first-line support duty every fourth sprint: triaged <strong>50+ tickets</strong>, fixed what I could, routed the rest, and coordinated with product.</li>
         <li>Own production incidents end to end — reproduce, trace the root cause across the stack, ship the fix.</li>
       </ul>
@@ -331,7 +337,7 @@
       <div class="os__item">
         <p class="os__name">hacktoberfest</p>
         <p>I started contributing while preparing for Google Summer of Code and kept going. Contributions across <strong>8+ organizations</strong>, working through code review in large codebases I'd never seen before — including one merged bug fix to a Rust project. A small one, but my first.</p>
-        <ul class="orgs"><li>Layer5 / Meshery</li><li>Ockam</li><li>Appwrite</li><li>Monday.com</li><li>AMUpedia</li></ul>
+        <ul class="orgs"><li>Layer5 / Meshery</li><li>Ockam</li><li>Monday.com</li><li>AMUpedia</li></ul>
       </div>
       <div class="os__item">
         <p class="os__name">why I stayed</p>
@@ -347,12 +353,12 @@
       <div class="proj__top">
         <div>
           <h3 class="proj__name">Khan Group of Hostels &amp; PG</h3>
-          <span class="proj__note proj__note--live">still in production</span>
+          <span class="proj__note">solo build</span>
         </div>
-        <span class="proj__stack">Next.js · Supabase · Drizzle</span>
+        <span class="proj__stack">Next.js · TypeScript · Supabase · Drizzle</span>
       </div>
-      <p>A booking platform for a hostel owner I met while staying there during college — my first large solo build. <strong>150+ bookings and about INR 75,000 in its first two weeks.</strong> The lesson I actually took away was about requirements: scope kept moving with the client's mood until I stopped and froze it, sketched the UI on paper, then designed the database.</p>
-      <p>The hard part was double-booking. Two people could hold the same room while a payment sat unverified, so I used a database transaction to make sure only one booking can ever lock a room, even under concurrent requests.</p>
+      <p>A booking platform for a hostel owner I met while staying there during college — my first large solo build. <strong>250+ bookings and INR 263,000+ in revenue so far</strong>, and invoices and agreements are generated automatically, cutting the owner's manual work by about 60%. The lesson I actually took away was about requirements: scope kept moving with the client's mood until I stopped and froze it, sketched the UI on paper, then designed the database.</p>
+      <p>The hard part was payments. The gateway allowed only one linked account, which didn't fit how the owner took money. So I designed around it: a guest books and immediately gets a slip marked "verification pending", the owner gets an email, confirms once the payment lands, and the booking status updates.</p>
       <ul class="chips">
         <li><a href="https://www.aligarhhostel.com/" target="_blank" rel="noopener">aligarhhostel.com</a></li>
         <li><a href="https://github.com/sayyedarib/hostel-booking-frontend" target="_blank" rel="noopener">repo</a></li>
@@ -367,7 +373,7 @@
         </div>
         <span class="proj__stack">Next.js · MongoDB · Node.js</span>
       </div>
-      <p>A senior of mine started this mentor–mentee platform and I joined a few weeks in, during my fifth semester. I built the mentor registration page and Google login, then took over more of the core engineering — starting with the Razorpay payment gateway — as he moved to the business side. We onboarded <strong>50+ mentors and 20+ mentees</strong>, and the community page still has <strong>6,300+ followers on LinkedIn</strong>.</p>
+      <p>A senior of mine started this mentor–mentee platform and I joined a few weeks in, during my fifth semester. I built the mentor registration page and Google login, then took over more of the core engineering — starting with the Razorpay payment gateway — as he moved to the business side. We onboarded <strong>50+ mentors and 20+ mentees</strong>, and the community page still has <strong>7,000+ followers on LinkedIn</strong>.</p>
       <p>It was picked for GirlScript Summer of Code, which brought in a wave of first-time contributors. I spent much of that time reviewing their PRs and walking them through small mistakes — the same patience Zulip's maintainers had shown me. The project is shut down now; Topmate took that market.</p>
       <ul class="chips">
         <li><a href="https://github.com/anmode/grabtern-frontend" target="_blank" rel="noopener">repo</a></li>
@@ -382,7 +388,7 @@
       </div>
       <p>A no-code platform for building AI assistants: upload a knowledge base, tune the retrieval pipeline, test it live, then paste one <code>&lt;script&gt;</code> tag into your site. I designed the LLM orchestration layer and the backend, and built the dashboard around it — <strong>22 routes</strong> covering auth, onboarding, a multi-source knowledge base, analytics, a WebSocket playground, and a theming studio.</p>
       <p>The part I'd defend in a review is the state boundary. Server state lives in TanStack Query with explicit invalidation; client-only state lives in a persisted Zustand store. Neither leaks into the other, so no component ever calls Axios directly — one hook per resource owns its query keys.</p>
-      <p>The whole RAG pipeline is configurable from the UI at runtime: chunk size, overlap, splitter, PDF parser, embedding model, LoRA/QLoRA parameters, temperature, and the system prompt.</p>
+      <p>The whole RAG pipeline is configurable from the UI at runtime: chunk size, overlap, splitter, PDF parser, embedding model, temperature, and the system prompt.</p>
       <ul class="chips">
         <li><a href="https://github.com/sayyedarib/botcraft-frontend" target="_blank" rel="noopener">repo</a></li>
       </ul>
@@ -414,16 +420,28 @@
 
   </section>
 
+  <section id="workspace" data-path="~/workspace" class="rv">
+    <div class="shead"><h2>Workspace</h2><span class="dir">~/workspace</span></div>
+    <p class="ws__intro">Most of my day happens in a terminal. Coding agents do a lot of the typing now; I set them up, keep them on a short leash, and read the diff before anything lands.</p>
+    <dl class="skills">
+      <div class="srow"><dt>editor</dt><dd>Neovim</dd></div>
+      <div class="srow"><dt>agents</dt><dd>Claude Code, with my own skills and hooks · kiro-cli <span class="soft">· Cursor, now and then</span></dd></div>
+      <div class="srow"><dt>terminal</dt><dd>herdr to run several agents side by side · hunk</dd></div>
+      <div class="srow"><dt>os</dt><dd>Ubuntu, Bash</dd></div>
+    </dl>
+  </section>
+
   <section id="skills" data-path="~/skills" class="rv">
     <div class="shead"><h2>Skills</h2><span class="dir">~/skills</span></div>
     <dl class="skills">
-      <div class="srow"><dt>languages</dt><dd>JavaScript, TypeScript, SQL, C++, Java <span class="soft">· Python (FastAPI, pandas — rusty but real) · Go, Rust (exposure)</span></dd></div>
+      <div class="srow"><dt>languages</dt><dd>JavaScript, TypeScript, SQL, C++, Java <span class="soft">· Python (FastAPI, pandas — rusty but real)</span></dd></div>
       <div class="srow"><dt>frontend</dt><dd>Angular, React, Next.js, HTML, CSS, reusable components</dd></div>
       <div class="srow"><dt>backend</dt><dd>Node.js, FastAPI, REST APIs, PostgreSQL, MongoDB, Redis</dd></div>
-      <div class="srow"><dt>linux &amp; infra</dt><dd>Ubuntu, Bash, systemd services and timers, networking / DNS, file permissions, Docker, AWS (RDS)</dd></div>
+      <div class="srow"><dt>linux &amp; infra</dt><dd>Ubuntu, Bash, systemd services and timers, networking / DNS, file permissions, Docker, AWS (EC2, RDS, S3)</dd></div>
+      <div class="srow"><dt>mobile</dt><dd>Capacitor, over-the-air updates (Capgo), Firebase Crashlytics, native Android layer (Java)</dd></div>
       <div class="srow"><dt>testing</dt><dd>Puppeteer, Jest, regression automation, root-cause debugging, incident triage</dd></div>
       <div class="srow"><dt>data &amp; ai</dt><dd>ETL pipelines, Metabase, query optimization, LangChain, Model Context Protocol, RAG, NumPy, pandas</dd></div>
-      <div class="srow"><dt>practices</dt><dd>Git / GitHub, GitHub Actions, code review, requirements gathering, on-call rotations, documentation</dd></div>
+      <div class="srow"><dt>practices</dt><dd>Git / GitHub, GitHub Actions, code review, requirements gathering, first-line support rotations, documentation</dd></div>
     </dl>
   </section>
 
@@ -476,13 +494,13 @@
       body=document.body;
 
   var DIRS={
-    'experience':'experience','open-source':'open-source','projects':'projects',
+    'experience':'experience','open-source':'open-source','projects':'projects','workspace':'workspace',
     'skills':'skills','education':'education','contact':'contact'
   };
   var FILES={
     'about.txt':["Sayyed Arib Hussain — software engineer, Gurugram.",
       "1.5 years at telecrm building and operating a CRM used by 20,000+ people.",
-      "Ubuntu daily driver. Upstream contributor to Zulip, Meshery, Ockam, Appwrite.",
+      "Ubuntu daily driver. Upstream contributor to Zulip, Meshery, Ockam.",
       "Currently open to backend, full-stack and platform roles."],
     'contact.txt':["email    sayyedaribhussain4321@gmail.com",
       "github   github.com/sayyedarib","linkedin linkedin.com/in/aarib",
@@ -491,7 +509,7 @@
       "also      React · Next.js · FastAPI · MongoDB · Redis",
       "infra     Ubuntu · systemd · Docker · AWS RDS · GitHub Actions",
       "testing   Puppeteer · Jest","rusty     Python (real, but not in a year)",
-      "exposure  Go · Rust (one merged fix)"],
+      "tools     Neovim · Claude Code · herdr · hunk · kiro-cli"],
     'resume.pdf':null
   };
 
@@ -569,8 +587,8 @@
       print('<span class="u"> /\\   \\      </span><span class="d">role</span>     Software Engineer @ telecrm');
       print('<span class="u">/  __  \\     </span><span class="d">uptime</span>   1.5 years');
       print('<span class="u">/  (  )  \\   </span><span class="d">shell</span>    bash · zsh when feeling fancy');
-      print('<span class="u">/__|  |__\\   </span><span class="d">editor</span>   whatever has the file open');
-      print('<span class="u">             </span><span class="d">upstream</span> zulip · meshery · ockam · appwrite');
+      print('<span class="u">/__|  |__\\   </span><span class="d">editor</span>   neovim');
+      print('<span class="u">             </span><span class="d">agents</span>   claude code · kiro-cli');
     },
     clear:function(){out.innerHTML='';term.classList.remove('open');},
     sudo:function(){print('arib is not in the sudoers file. This incident will be reported.','e');},
